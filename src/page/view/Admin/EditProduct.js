@@ -3,23 +3,29 @@ import PropTypes from 'prop-types'
 import { useParams, useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form'
 import Modal from 'react-modal';
+import Upload from '../Application/UpLoad'
 
 
 
 const EditProduct = ({ products, categorys, onUpdatePd }) => {
-    console.log(categorys)
     const { id } = useParams();
     const history = useHistory();
     const { register, errors, handleSubmit } = useForm();
     const product = products.find(product => product.id === id);
 
     const onHandleSubmit = (data) => {
-        const newData = {
-            id: id.toString(),
-            ...data
-        }
-        onUpdatePd(newData);
-        openModal();
+        let file = data.image[0];
+        let storageRef = Upload.storage().ref(`images/${file.name}`);
+        storageRef.put(file).then(function () {
+            storageRef.getDownloadURL().then((url) => {
+                const newData = {
+                    ...data, id: id.toString(),
+                    image: url
+                }
+                onUpdatePd(newData)
+                openModal();
+            })
+        });
     }
     const [modalIsOpen, setIsOpen] = React.useState(false);
     function openModal() {
@@ -63,16 +69,16 @@ const EditProduct = ({ products, categorys, onUpdatePd }) => {
                             </div>
                             <div className="form-group col-xs-6">
                                 <label htmlFor="email-field">Giá gốc</label>
-                                <input name="pricesale" type="number" ref={register({ min: 1, max: 1000 })} defaultValue={product.price} className="form-control" id="email-field" placeholder="Giá tiền $" />
-                                {errors.pricesale && errors.pricesale.type === "min" && <span style={{ color: 'red' }}>Giá phải trên $0 </span>}
-                                {errors.pricesale && errors.pricesale.type === "max" && <span style={{ color: 'red' }}>Giá phải dưới $1000 </span>}
+                                <input name="price" type="number" ref={register({ min: 1, max: 1000 })} defaultValue={product.price} className="form-control" id="email-field" placeholder="Giá tiền $" />
+                                {errors.price && errors.price.type === "min" && <span style={{ color: 'red' }}>Giá phải trên $0 </span>}
+                                {errors.price && errors.price.type === "max" && <span style={{ color: 'red' }}>Giá phải dưới $1000 </span>}
                             </div>
                             <div className="form-group col-xs-6">
                                 <label htmlFor="email-field">Giá sale</label>
-                                <input name="price" type="number" ref={register({ required: true, min: 1, max: 1000 })} defaultValue={product.pricesale} className="form-control" id="email-field" placeholder="Giá tiền $" />
-                                {errors.price && errors.price.type === "required" && <span style={{ color: 'red' }}>Không được để trống giá tiền</span>}
-                                {errors.price && errors.price.type === "min" && <span style={{ color: 'red' }}>Giá phải trên $0 </span>}
-                                {errors.price && errors.price.type === "max" && <span style={{ color: 'red' }}>Giá phải dưới $1000 </span>}
+                                <input name="pricesale" type="number" ref={register({ required: true, min: 1, max: 1000 })} defaultValue={product.pricesale} className="form-control" id="email-field" placeholder="Giá tiền $" />
+                                {errors.pricesale && errors.pricesale.type === "required" && <span style={{ color: 'red' }}>Không được để trống giá tiền</span>}
+                                {errors.pricesale && errors.pricesale.type === "min" && <span style={{ color: 'red' }}>Giá phải trên $0 </span>}
+                                {errors.pricesale && errors.pricesale.type === "max" && <span style={{ color: 'red' }}>Giá phải dưới $1000 </span>}
                             </div>
                             <div className="form-group col-xs-6">
                                 <label htmlFor="name-field">Màu sản phẩm</label>
@@ -82,7 +88,8 @@ const EditProduct = ({ products, categorys, onUpdatePd }) => {
                             </div>
                             <div id="hidden-other-subject" className="form-group col-xs-6 hidden">
                                 <label htmlFor="other-subject-field">Ảnh</label>
-                                <input type="file" id="file" name="file" className="form-control" />
+                                <input type="file" id="file" name="image" ref={register({ required: true })} className="form-control" />
+                                {errors.image && errors.image.type === "required" && <span style={{ color: 'red' }}>Không được để trống ảnh </span>}
                             </div>
                             <div className="form-group col-xs-6">
                                 <label htmlFor="name-field">Mô tả</label>
@@ -96,7 +103,7 @@ const EditProduct = ({ products, categorys, onUpdatePd }) => {
                                 {errors.detailmax && errors.detailmax.type === "required" && <span style={{ color: 'red' }}>Không được để trống chi tiết</span>}
                                 {errors.detailmax && errors.detailmax.type === "minLength" && <span style={{ color: 'red' }}>Chi tiết phải trên 10 kí tự</span>}
                                 {errors.detailmax && errors.detailmax.type === "maxLength" && <span style={{ color: 'red' }}>Chi tiết phải dưới 500 kí tự</span>}
-                                {errors.detailmax && errors.detailmax.type === "maxLength" && <span style={{ color: 'red' }}>Không được có khoảng trống</span>}
+                                {errors.detailmax && errors.detailmax.type === "pattern" && <span style={{ color: 'red' }}>Không được có khoảng trống</span>}
                             </div>
                             <div className="control-group">
                                 <label className="control-label">Tình trạng</label>

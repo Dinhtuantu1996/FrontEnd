@@ -41,6 +41,7 @@ const Category = ({ category, onRemoveCg }) => {
                                 <tr>
                                     <th style={{ width: '1px' }}>STT</th>
                                     <th >Tên danh mục</th>
+                                    <th >Ảnh</th>
                                     <th >Mô tả danh mục</th>
                                     <th style={{ width: '150px' }}>Số lượng hàng</th>
                                     <td style={{ width: '180px' }}> Hành động</td>
@@ -50,16 +51,18 @@ const Category = ({ category, onRemoveCg }) => {
                                 <tr>
                                     <th >STT</th>
                                     <th >Tên danh mục</th>
+                                    <th >Ảnh</th>
                                     <th >Mô tả danh mục</th>
                                     <th >Số lượng hàng</th>
                                     <td> Hành động</td>
                                 </tr>
                             </tfoot>
                             <tbody>
-                                {category.map(({ id, name, detail, amount }, index) => (
+                                {category.map(({ id, name, detail, amount,image }, index) => (
                                     <tr key={index}>
                                         <td style={{ backgroundColor: 'white', color: 'red' }}> {index + 1}</td>
                                         <td>{name}</td>
+                                        <td><img style={{ width: '100px', height: '100px' }} src={image} /></td>
                                         <td>
                                             <details>
                                                 <summary>Mở rộng</summary>

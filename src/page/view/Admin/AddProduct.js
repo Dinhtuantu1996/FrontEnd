@@ -13,19 +13,13 @@ const AddProduct = ({ onAddPd, categorys }) => {
 
     const onHandleSubmit = (data) => {
         let file = data.image[0];
-        // tạo reference chứa ảnh trên firesbase
         let storageRef = Upload.storage().ref(`images/${file.name}`);
-        // đẩy ảnh lên đường dẫn trên
         storageRef.put(file).then(function () {
             storageRef.getDownloadURL().then((url) => {
-                console.log(url);
-                // Tạo object mới chứa toàn bộ thông tin từ input
                 const newData = {
                     ...data,
                     image: url
                 }
-                console.log(newData);
-                // đẩy dữ liệu ra ngoài app.js thông qua props onAdd
                 onAddPd(newData)
                 openModal();
             })
@@ -76,16 +70,16 @@ const AddProduct = ({ onAddPd, categorys }) => {
                             </div>
                             <div className="form-group col-xs-6">
                                 <label htmlFor="email-field">Giá gốc</label>
-                                <input name="pricesale" type="number" ref={register({ min: 1, max: 1000 })} className="form-control" id="email-field" placeholder="Giá tiền $" />
-                                {errors.pricesale && errors.pricesale.type === "min" && <span style={{ color: 'red' }}>Giá phải trên $0 </span>}
-                                {errors.pricesale && errors.pricesale.type === "max" && <span style={{ color: 'red' }}>Giá phải dưới $1000 </span>}
+                                <input name="price" type="number" ref={register({ min: 1, max: 1000 })} className="form-control" id="email-field" placeholder="Giá tiền $" />
+                                {errors.price && errors.price.type === "min" && <span style={{ color: 'red' }}>Giá phải trên $0 </span>}
+                                {errors.price && errors.price.type === "max" && <span style={{ color: 'red' }}>Giá phải dưới $1000 </span>}
                             </div>
                             <div className="form-group col-xs-6">
                                 <label htmlFor="email-field">Giá sale</label>
-                                <input name="price" type="number" ref={register({ required: true, min: 1, max: 1000 })} className="form-control" id="email-field" placeholder="Giá tiền $" />
-                                {errors.price && errors.price.type === "required" && <span style={{ color: 'red' }}>Không được để trống giá tiền</span>}
-                                {errors.price && errors.price.type === "min" && <span style={{ color: 'red' }}>Giá phải trên $0 </span>}
-                                {errors.price && errors.price.type === "max" && <span style={{ color: 'red' }}>Giá phải dưới $1000 </span>}
+                                <input name="pricesale" type="number" ref={register({ required: true, min: 1, max: 1000 })} className="form-control" id="email-field" placeholder="Giá tiền $" />
+                                {errors.pricesale && errors.pricesale.type === "required" && <span style={{ color: 'red' }}>Không được để trống giá tiền</span>}
+                                {errors.pricesale && errors.pricesale.type === "min" && <span style={{ color: 'red' }}>Giá phải trên $0 </span>}
+                                {errors.pricesale && errors.pricesale.type === "max" && <span style={{ color: 'red' }}>Giá phải dưới $1000 </span>}
                             </div>
                             <div className="form-group col-xs-6">
                                 <label htmlFor="name-field">Màu sản phẩm</label>
@@ -95,7 +89,8 @@ const AddProduct = ({ onAddPd, categorys }) => {
                             </div>
                             <div id="hidden-other-subject" className="form-group col-xs-6 hidden">
                                 <label htmlFor="other-subject-field">Ảnh</label>
-                                <input type="file" id="file" name="image"  ref={register} className="form-control" />
+                                <input type="file" id="file" name="image" ref={register({ required: true })} className="form-control" />
+                                {errors.image && errors.image.type === "required" && <span style={{ color: 'red' }}>Không được để trống ảnh </span>}
                             </div>
                             <div className="form-group col-xs-6">
                                 <label htmlFor="name-field">Mô tả</label>
@@ -109,7 +104,7 @@ const AddProduct = ({ onAddPd, categorys }) => {
                                 {errors.detailmax && errors.detailmax.type === "required" && <span style={{ color: 'red' }}>Không được để trống chi tiết</span>}
                                 {errors.detailmax && errors.detailmax.type === "minLength" && <span style={{ color: 'red' }}>Chi tiết phải trên 10 kí tự</span>}
                                 {errors.detailmax && errors.detailmax.type === "maxLength" && <span style={{ color: 'red' }}>Chi tiết phải dưới 500 kí tự</span>}
-                                {errors.detailmax && errors.detailmax.type === "maxLength" && <span style={{ color: 'red' }}>Không được có khoảng trống</span>}
+                                {errors.detailmax && errors.detailmax.type === "pattern" && <span style={{ color: 'red' }}>Không được có khoảng trống</span>}
                             </div>
                             <div className="control-group">
                                 <label className="control-label">Tình trạng</label>

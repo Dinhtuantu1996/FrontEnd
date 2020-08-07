@@ -3,6 +3,7 @@
     {
       "id": "1",
       "name": "Bài viết 1 ",
+      "image": "../bootstrap2/images/item-2.jpg",
       "category": "Danh mục 1",
       "date": "6-8-2020",
       "detail": "topic1"
@@ -13,18 +14,12 @@
       "category": "Danh mục 2",
       "date": "6-8-2020",
       "detail": "topic2"
-    },
-    {
-      "date": "7-8-2020",
-      "id": "3",
-      "name": "2",
-      "category": "22",
-      "detail": "22222222222222222222"
     }
   ],
   "categorys": [
     {
       "id": "1",
+      "image": "../bootstrap2/images/item-2.jpg",
       "name": "--Không thuộc danh mục nào--",
       "detail": ""
     },

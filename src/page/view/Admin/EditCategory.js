@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { useParams, useHistory } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import Modal from 'react-modal';
+import Upload from '../Application/UpLoad'
 
 const EditCategory = ({category, onUpdateCg }) => {
     const { id } = useParams();
@@ -11,12 +12,18 @@ const EditCategory = ({category, onUpdateCg }) => {
     const categorys = category.find(category => category.id === id);
 
     const onHandleSubmitCg = (data) => {
-        const newData = {
-            id: id.toString(),
-            ...data
-        }
-        onUpdateCg(newData);
-        openModal();
+        let file = data.image[0];
+        let storageRef = Upload.storage().ref(`images/${file.name}`);
+        storageRef.put(file).then(function () {
+            storageRef.getDownloadURL().then((url) => {
+                const newData = {
+                    ...data, id: id.toString(),
+                    image: url
+                }
+                onUpdateCg(newData)
+                openModal();
+            })
+        });
     }
 
     const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -55,7 +62,8 @@ const EditCategory = ({category, onUpdateCg }) => {
                             </div>
                             <div id="hidden-other-subject" className="form-group col-xs-6 hidden">
                                 <label htmlFor="other-subject-field">Ảnh</label>
-                                <input type="file" id="file" name="file" className="form-control" />
+                                <input type="file" id="file" name="image" ref={register({ required: true })} className="form-control" />
+                                {errors.image && errors.image.type === "required" && <span style={{ color: 'red' }}>Không được để trống ảnh </span>}
                             </div>
                             <div className="form-group col-xs-12">
                                 <label htmlFor="body-field">Mô tả danh mục</label>

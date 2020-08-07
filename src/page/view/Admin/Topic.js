@@ -41,6 +41,7 @@ const Topic = ({ topics, onRemoveTp }) => {
                                 <tr>
                                     <th style={{ width: '1px' }}>STT</th>
                                     <th >Tiêu đề </th>
+                                    <th>Ảnh</th>
                                     <th >Danh mục </th>
                                     <th style={{ width: '300px' }}>Nội dung </th>
                                     <th style={{ width: '150px' }}>Ngày đăng</th>
@@ -49,8 +50,9 @@ const Topic = ({ topics, onRemoveTp }) => {
                             </thead>
                             <tfoot>
                                 <tr>
-                                <th style={{ width: '1px' }}>STT</th>
+                                    <th style={{ width: '1px' }}>STT</th>
                                     <th >Tiêu đề </th>
+                                    <th>Ảnh</th>
                                     <th >Danh mục </th>
                                     <th >Nội dung </th>
                                     <th >Ngày đăng</th>
@@ -58,10 +60,11 @@ const Topic = ({ topics, onRemoveTp }) => {
                                 </tr>
                             </tfoot>
                             <tbody>
-                                {topics.map(({ id, name, detail, date, category }, index) => (
+                                {topics.map(({ id, name, detail, date, category, image }, index) => (
                                     <tr key={index}>
                                         <td style={{ backgroundColor: 'white', color: 'red' }}> {index + 1}</td>
                                         <td>{name}</td>
+                                        <td><img style={{ width: '100px', height: '100px' }} src={image} /></td>
                                         <td>{category}</td>
                                         <td>
                                             <details>
