@@ -1,0 +1,224 @@
+{
+  "topics": [
+    {
+      "id": "1",
+      "name": "Bài viết 1 ",
+      "category": "Danh mục 1",
+      "date": "6-8-2020",
+      "detail": "topic1"
+    },
+    {
+      "id": "2",
+      "name": "Bài viết 2",
+      "category": "Danh mục 2",
+      "date": "6-8-2020",
+      "detail": "topic2"
+    },
+    {
+      "date": "7-8-2020",
+      "id": "3",
+      "name": "2",
+      "category": "22",
+      "detail": "22222222222222222222"
+    }
+  ],
+  "categorys": [
+    {
+      "id": "1",
+      "name": "--Không thuộc danh mục nào--",
+      "detail": ""
+    },
+    {
+      "id": "2",
+      "name": "Danh mục 1 ",
+      "detail": "Giày1"
+    },
+    {
+      "id": "3",
+      "name": "Danh mục 2 ",
+      "detail": "Giày2"
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "categoryid": "1",
+      "name": "Giày",
+      "image": "../bootstrap2/images/item-1.jpg",
+      "price": "100",
+      "pricesale": "50",
+      "color": "Xanh dương",
+      "status": false,
+      "detailmin": "Nội dung ngắn",
+      "detailmax": "Nội dung dài"
+    },
+    {
+      "id": "2",
+      "categoryid": "1",
+      "name": "Giày",
+      "image": "../bootstrap2/images/item-2.jpg",
+      "price": "100",
+      "pricesale": "50",
+      "color": "Xanh dương",
+      "status": true,
+      "detailmin": "Nội dung ngắn",
+      "detailmax": "Nội dung dài"
+    },
+    {
+      "id": "3",
+      "categoryid": "1",
+      "name": "Giày",
+      "image": "../bootstrap2/images/item-3.jpg",
+      "price": "100",
+      "pricesale": "50",
+      "color": "Xanh dương",
+      "status": true,
+      "detailmin": "Nội dung ngắn",
+      "detailmax": "Nội dung dài"
+    },
+    {
+      "id": "4",
+      "categoryid": "1",
+      "name": "Giày",
+      "image": "../bootstrap2/images/item-4.jpg",
+      "price": "100",
+      "pricesale": "50",
+      "color": "Xanh dương",
+      "status": true,
+      "detailmin": "Nội dung ngắn",
+      "detailmax": "Nội dung dài"
+    },
+    {
+      "id": "5",
+      "categoryid": "1",
+      "name": "Giày",
+      "image": "../bootstrap2/images/item-5.jpg",
+      "price": "100",
+      "pricesale": "50",
+      "color": "Xanh dương",
+      "status": true,
+      "detailmin": "Nội dung ngắn",
+      "detailmax": "Nội dung dài"
+    },
+    {
+      "id": "6",
+      "categoryid": "1",
+      "name": "Giày",
+      "image": "../bootstrap2/images/item-6.jpg",
+      "price": "100",
+      "pricesale": "50",
+      "color": "Xanh dương",
+      "status": true,
+      "detailmin": "Nội dung ngắn",
+      "detailmax": "Nội dung dài"
+    },
+    {
+      "id": "7",
+      "categoryid": "1",
+      "name": "Giày",
+      "image": "../bootstrap2/images/item-7.jpg",
+      "price": "100",
+      "pricesale": "50",
+      "color": "Xanh dương",
+      "status": true,
+      "detailmin": "Nội dung ngắn",
+      "detailmax": "Nội dung dài"
+    },
+    {
+      "id": "8",
+      "categoryid": "1",
+      "name": "Giày",
+      "image": "../bootstrap2/images/item-8.jpg",
+      "price": "100",
+      "pricesale": "50",
+      "color": "Xanh dương",
+      "status": true,
+      "detailmin": "Nội dung ngắn",
+      "detailmax": "Nội dung dài"
+    },
+    {
+      "id": "9",
+      "categoryid": "1",
+      "name": "Giày",
+      "image": "../bootstrap2/images/item-9.jpg",
+      "price": "100",
+      "pricesale": "50",
+      "color": "Xanh dương",
+      "status": true,
+      "detailmin": "Nội dung ngắn",
+      "detailmax": "Nội dung dài"
+    },
+    {
+      "id": "10",
+      "categoryid": "1",
+      "name": "Giày",
+      "image": "../bootstrap2/images/item-10.jpg",
+      "price": "100",
+      "pricesale": "50",
+      "color": "Xanh dương",
+      "status": true,
+      "detailmin": "Nội dung ngắn",
+      "detailmax": "Nội dung dài"
+    },
+    {
+      "id": "11",
+      "categoryid": "1",
+      "name": "Giày",
+      "image": "../bootstrap2/images/item-11.jpg",
+      "price": "100",
+      "pricesale": "50",
+      "color": "Xanh dương",
+      "status": true,
+      "detailmin": "Nội dung ngắn",
+      "detailmax": "Nội dung dài"
+    },
+    {
+      "id": "12",
+      "categoryid": "1",
+      "name": "Giày",
+      "image": "../bootstrap2/images/item-12.jpg",
+      "price": "100",
+      "pricesale": "50",
+      "color": "Xanh dương",
+      "status": true,
+      "detailmin": "Nội dung ngắn",
+      "detailmax": "Nội dung dài"
+    },
+    {
+      "id": "13",
+      "categoryid": "1",
+      "name": "Giày",
+      "image": "../bootstrap2/images/item-13.jpg",
+      "price": "100",
+      "pricesale": "50",
+      "color": "Xanh dương",
+      "status": true,
+      "detailmin": "Nội dung ngắn",
+      "detailmax": "Nội dung dài"
+    },
+    {
+      "id": "14",
+      "categoryid": "1",
+      "name": "Giày",
+      "image": "../bootstrap2/images/item-14.jpg",
+      "price": "100",
+      "pricesale": "50",
+      "color": "Xanh dương",
+      "status": true,
+      "detailmin": "Nội dung ngắn",
+      "detailmax": "Nội dung dài"
+    },
+    {
+      "id": "15",
+      "categoryid": "1",
+      "name": "Giày",
+      "image": "../bootstrap2/images/item-15.jpg",
+      "price": "100",
+      "pricesale": "50",
+      "color": "Xanh dương",
+      "status": true,
+      "detailmin": "Nội dung ngắn",
+      "detailmax": "Nội dung dài"
+    }
+  ]
+}
