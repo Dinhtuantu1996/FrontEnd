@@ -36,8 +36,8 @@ const EditTopic = ({topics, onUpdateTp }) => {
     }
     const customStyles = {
         content: {
-            top: '50%',
-            left: '50%',
+            top: '30%',
+            left: '40%',
             right: 'auto',
             bottom: 'auto',
         }
@@ -46,7 +46,7 @@ const EditTopic = ({topics, onUpdateTp }) => {
     return (
         <div className="card shadow mb-4">
         <div className="card-header py-3">
-            <h1 className="h3 mb-2 text-gray-800">Thêm bài viết mới</h1>
+            <h1 className="h3 mb-2 text-gray-800">Sửa bài viết ID: {topic.id}</h1>
         </div>
         <div className="card-body">
             <div className="table-responsive">
@@ -73,10 +73,10 @@ const EditTopic = ({topics, onUpdateTp }) => {
                             </div>
                         <div className="form-group col-xs-12">
                             <label htmlFor="body-field">Nội dung</label>
-                            <textarea ref={register({ required: true, minLength: 10, maxLength: 100 , pattern: /^[^\s]+(\s+[^\s]+)*$/})} defaultValue={topic.detail}  id="body-field" name="detail" className="form-control" placeholder="Chi tiết" />
+                            <textarea ref={register({ required: true, minLength: 10, maxLength: 1000 , pattern: /^[^\s]+(\s+[^\s]+)*$/})} defaultValue={topic.detail}  id="body-field" name="detail" className="form-control" placeholder="Chi tiết" />
                             {errors.detail && errors.detail.type === "required" && <span style={{ color: 'red' }}>Không được để trống nội dung</span>}
                             {errors.detail && errors.detail.type === "minLength" && <span style={{ color: 'red' }}>Nội dung danh mục phải trên 10 kí tự</span>}
-                            {errors.detail && errors.detail.type === "maxLength" && <span style={{ color: 'red' }}>Nội dung danh mục phải dưới 100 kí tự</span>}
+                            {errors.detail && errors.detail.type === "maxLength" && <span style={{ color: 'red' }}>Nội dung danh mục phải dưới 1000 kí tự</span>}
                             {errors.detail && errors.detail.type === "pattern" && <span style={{ color: 'red' }}>Không được có khoảng trống </span>}
                         </div>
                        
@@ -90,15 +90,27 @@ const EditTopic = ({topics, onUpdateTp }) => {
             </div>
         </div>
         <div>
-            <Modal
-                isOpen={modalIsOpen}
-                onRequestClose={closeModal}
-                style={customStyles}
-                contentLabel="Example Modal"
-            >
-                <button onClick={closeModal}>x</button>
-                <h4>Sửa thành công bài viết </h4 >
-            </Modal>
+        <Modal
+                    isOpen={modalIsOpen}
+                    onRequestClose={closeModal}
+                    style={customStyles}
+                >
+                    <div class="modal-header">
+                        <h5 class="modal-title">Sửa bài viết</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        Bạn đã sửa thành công bài viết
+            </div>
+                    <div class="modal-footer">
+                        {/* <button type="button"  class="btn btn-secondary" data-dismiss="modal">Đóng</button> */}
+                        <button type="button" onClick={closeModal} class="btn btn-primary">Đóng</button>
+
+                    </div>
+                </Modal>
         </div>
     </div>
 

@@ -30,11 +30,12 @@ const Header = props => {
             <li className="has-dropdown">
               <Link to="/shopping">Shopping</Link>
               <ul className="dropdown">
-                <li><Link to="/cart">Shopping Cart</Link></li>
                 <li><Link to="/checkout">Checkout</Link></li>
                 <li><Link to="/order">Order Complete</Link></li>
               </ul>
             </li>
+            <li><Link to="/categorys">Category</Link></li>
+            <li><Link to="/blog">Blog</Link></li>
             <li><Link to="/about">About</Link></li>
             <li><Link to="/contact">Contact</Link></li>
             <li className="cart"><Link to="/cart"><i className="icon-shopping-cart" /> Cart [0]</Link></li>

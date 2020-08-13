@@ -35,8 +35,8 @@ const AddCategory = ({ onAddCg }) => {
     }
     const customStyles = {
         content: {
-            top: '50%',
-            left: '50%',
+            top: '30%',
+            left: '40%',
             right: 'auto',
             bottom: 'auto',
         }
@@ -69,7 +69,7 @@ const AddCategory = ({ onAddCg }) => {
                             </div>
                             <div className="form-group col-xs-12">
                                 <label htmlFor="body-field">Mô tả danh mục</label>
-                                <textarea ref={register({ required: true, minLength: 10, maxLength: 100 , pattern: /^[^\s]+(\s+[^\s]+)*$/})} id="body-field" name="detail" className="form-control" placeholder="Chi tiết" />
+                                <textarea ref={register({ required: true, minLength: 10, maxLength: 100, pattern: /^[^\s]+(\s+[^\s]+)*$/ })} id="body-field" name="detail" className="form-control" placeholder="Chi tiết" />
                                 {errors.detail && errors.detail.type === "required" && <span style={{ color: 'red' }}>Không được để trống chi tiết</span>}
                                 {errors.detail && errors.detail.type === "minLength" && <span style={{ color: 'red' }}>Mô tả danh mục phải trên 10 kí tự</span>}
                                 {errors.detail && errors.detail.type === "maxLength" && <span style={{ color: 'red' }}>Mô tả danh mục phải dưới 100 kí tự</span>}
@@ -89,10 +89,22 @@ const AddCategory = ({ onAddCg }) => {
                     isOpen={modalIsOpen}
                     onRequestClose={closeModal}
                     style={customStyles}
-                    contentLabel="Example Modal"
                 >
-                    <button onClick={closeModal}>x</button>
-                    <h4>Thêm thành công danh mục </h4 >
+                    <div class="modal-header">
+                        <h5 class="modal-title">Thêm danh mục</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        Bạn đã thêm công danh mục
+            </div>
+                    <div class="modal-footer">
+                        {/* <button type="button"  class="btn btn-secondary" data-dismiss="modal">Đóng</button> */}
+                        <button type="button" onClick={closeModal} class="btn btn-primary">Đóng</button>
+
+                    </div>
                 </Modal>
             </div>
         </div>

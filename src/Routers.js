@@ -26,6 +26,8 @@ import Topic from './page/view/Admin/Topic';
 import AddTopic from './page/view/Admin/AddTopic';
 import EditTopic from './page/view/Admin/EditTopic';
 import MainCategory from './page/view/Main/MainCategory';
+import MainCategoryDetail from './page/view/Main/MainCategoryDetail';
+import MainTopic from './page/view/Main/MainTopic';
 
 const Routers = ({ products, onRemovePd, onAddPd, onUpdatePd
     , categorys, onRemoveCg, onAddCg, onUpdateCg 
@@ -64,10 +66,10 @@ const Routers = ({ products, onRemovePd, onAddPd, onUpdatePd
                     <MainAdmin>
                         <Switch>
                             <Route path='/admin' exact>
-                                <Index />
+                                <Index products={products} topics={topics} />
                             </Route>
                             <Route path='/admin/products' >
-                                <Product products={products} onRemovePd={onHandleRemovePd} />
+                                <Product category={categorys} products={products} onRemovePd={onHandleRemovePd} />
                             </Route>
                             <Route path='/admin/add'>
                                 <AddProduct categorys={categorys} onAddPd={onAddPd} />
@@ -79,7 +81,7 @@ const Routers = ({ products, onRemovePd, onAddPd, onUpdatePd
                                 <EditProduct categorys={categorys} products={products} onUpdatePd={onHandleUpdatePd} />
                             </Route>
                             <Route path='/admin/category' >
-                                <Category category={categorys} onRemoveCg={onHandleRemoveCg} />
+                                <Category products={products} category={categorys} onRemoveCg={onHandleRemoveCg} />
                             </Route>
                             <Route path='/admin/addcategory'>
                                 <AddCategory onAddCg={onAddCg} />
@@ -114,29 +116,35 @@ const Routers = ({ products, onRemovePd, onAddPd, onUpdatePd
                             <Route path="/register">
                                 <MainRegister />
                             </Route>
-                            <Route path="/about" exact>
+                            <Route path="/about" >
                                 <MainAbout />
                             </Route>
-                            <Route path="/contact" exact>
+                            <Route path="/contact" >
                                 <MainContact />
                             </Route>
-                            <Route path="/shopping" exact>
+                            <Route path="/shopping" >
                                 <MainShopping products={products} />
                             </Route>
-                            <Route path="/category" exact>
-                                <MainCategory  />
+                            <Route path="/categorys" >
+                                <MainCategory category={categorys}  />
                             </Route>
-                            <Route path="/cart" exact>
+                            <Route path="/cart" >
                                 <MainCart />
                             </Route>
-                            <Route path="/order" exact>
+                            <Route path="/order" >
                                 <MainOrder />
                             </Route>
-                            <Route path="/checkout" exact>
+                            <Route path="/checkout" >
                                 <MainCheckOut />
                             </Route>
                             <Route path="/detail/:id">
                                 <MainDetail products={products} />
+                            </Route>
+                            <Route path="/category/:id">
+                                <MainCategoryDetail products={products} />
+                            </Route>
+                            <Route path="/blog">
+                                <MainTopic topics={topics} />
                             </Route>
                             <Route>
                                 <Error />

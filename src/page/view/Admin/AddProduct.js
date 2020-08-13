@@ -9,8 +9,7 @@ import Upload from '../Application/UpLoad'
 const AddProduct = ({ onAddPd, categorys }) => {
     const { register, handleSubmit, errors } = useForm();
     const history = useHistory();
-
-
+    
     const onHandleSubmit = (data) => {
         let file = data.image[0];
         let storageRef = Upload.storage().ref(`images/${file.name}`);
@@ -25,6 +24,7 @@ const AddProduct = ({ onAddPd, categorys }) => {
             })
         });
     }
+ 
 
     const [modalIsOpen, setIsOpen] = React.useState(false);
     function openModal() {
@@ -36,8 +36,8 @@ const AddProduct = ({ onAddPd, categorys }) => {
     }
     const customStyles = {
         content: {
-            top: '50%',
-            left: '50%',
+            top: '30%',
+            left: '40%',
             right: 'auto',
             bottom: 'auto',
         }
@@ -63,6 +63,7 @@ const AddProduct = ({ onAddPd, categorys }) => {
                                 <label className="control-label" htmlFor="basicinput">Danh mục</label>
                                 <div className="controls">
                                     <select name="categoryid" ref={register()} tabIndex={1} data-placeholder="Select here.." className="form-control ">
+                                    <option  value="">--Không thuộc danh mục nào--</option>
                                         {categorys.map((category, index) => (
                                             <option key={index} value={category.id}>{category.name}</option>))}
                                     </select>
@@ -100,10 +101,10 @@ const AddProduct = ({ onAddPd, categorys }) => {
                             </div>
                             <div className="form-group col-xs-12">
                                 <label htmlFor="body-field">Chi tiết sản phẩm</label>
-                                <textarea ref={register({ required: true, minLength: 10, maxLength: 500, pattern: /^[^\s]+(\s+[^\s]+)*$/ })} id="body-field" name="detailmax" className="form-control" placeholder="Chi tiết" />
+                                <textarea ref={register({ required: true, minLength: 10, maxLength: 2000, pattern: /^[^\s]+(\s+[^\s]+)*$/ })} id="body-field" name="detailmax" className="form-control" placeholder="Chi tiết" />
                                 {errors.detailmax && errors.detailmax.type === "required" && <span style={{ color: 'red' }}>Không được để trống chi tiết</span>}
                                 {errors.detailmax && errors.detailmax.type === "minLength" && <span style={{ color: 'red' }}>Chi tiết phải trên 10 kí tự</span>}
-                                {errors.detailmax && errors.detailmax.type === "maxLength" && <span style={{ color: 'red' }}>Chi tiết phải dưới 500 kí tự</span>}
+                                {errors.detailmax && errors.detailmax.type === "maxLength" && <span style={{ color: 'red' }}>Chi tiết phải dưới 2000 kí tự</span>}
                                 {errors.detailmax && errors.detailmax.type === "pattern" && <span style={{ color: 'red' }}>Không được có khoảng trống</span>}
                             </div>
                             <div className="control-group">
@@ -111,11 +112,11 @@ const AddProduct = ({ onAddPd, categorys }) => {
                                 <div className="controls">
                                     <label className="radio">
                                         <p style={{ padding: '0px 100px 0px 0px' }}>
-                                           <input type="radio" name="status" id="optionsRadios1" ref={register}  defaultChecked />
+                                           <input type="radio" name="status" id="optionsRadios1" ref={register} value= {'Còn hàng'}    defaultChecked />
                                          Còn hàng</p>
                                      </label>
                                     <label className="radio">
-                                       <p> <input type="radio" name="status" id="optionsRadios2" ref={register}    />
+                                       <p> <input type="radio" name="status" id="optionsRadios2"    />
                                           Hết hàng</p>
                                    </label>
                                 </div>
@@ -129,14 +130,26 @@ const AddProduct = ({ onAddPd, categorys }) => {
                 </div>
             </div>
             <div>
-                <Modal
+            <Modal
                     isOpen={modalIsOpen}
                     onRequestClose={closeModal}
                     style={customStyles}
-                    contentLabel="Example Modal"
                 >
-                    <button onClick={closeModal}>x</button>
-                    <h4>Thêm thành công sản phẩm </h4 >
+                    <div class="modal-header">
+                        <h5 class="modal-title">Thêm sản phẩm</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        Bạn đã thêm thành công sản phẩm
+            </div>
+                    <div class="modal-footer">
+                        {/* <button type="button"  class="btn btn-secondary" data-dismiss="modal">Đóng</button> */}
+                        <button type="button" onClick={closeModal} class="btn btn-primary">Đóng</button>
+
+                    </div>
                 </Modal>
             </div>
         </div>

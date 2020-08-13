@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
 
-const Product = ({ products, onRemovePd }) => {
+const Product = ({ category, products, onRemovePd }) => {
+
   const onHandleRemovePd = (id) => {
     onRemovePd(id);
     openModal();
@@ -17,10 +18,11 @@ const Product = ({ products, onRemovePd }) => {
   function closeModal() {
     setIsOpen(false);
   }
+
   const customStyles = {
     content: {
-      top: '50%',
-      left: '50%',
+      top: '30%',
+      left: '40%',
       right: 'auto',
       bottom: 'auto',
     }
@@ -42,18 +44,20 @@ const Product = ({ products, onRemovePd }) => {
                 <tr>
                   <th style={{ width: '1px' }}>STT</th>
                   <th style={{ width: '150px' }}>Tên sản phẩm</th>
+                  <th >Danh mục</th>
                   <th style={{ width: '100px' }}>Ảnh</th>
                   <th style={{ width: '50px' }}>Màu</th>
                   <th style={{ width: '100px' }}>Giá gốc</th>
                   <th style={{ width: '100px' }}>Giá sale</th>
                   <th style={{ width: '100px' }}>tình trạng</th>
-                  <th style={{ width: '250px' }}>Hành động</th>
+                  <th style={{ width: '270px' }}>Hành động</th>
                 </tr>
               </thead>
               <tfoot>
                 <tr>
                   <th>STT</th>
                   <th>Tên sản phẩm</th>
+                  <th >Danh mục</th>
                   <th>Ảnh</th>
                   <th>Màu</th>
                   <th>Giá gốc</th>
@@ -63,10 +67,17 @@ const Product = ({ products, onRemovePd }) => {
                 </tr>
               </tfoot>
               <tbody>
-                {products.map(({ id, name, image, price, pricesale, color , status }, index) => (
+                {products.map(({ id, categoryid, name, image, price, pricesale, color, status }, index) => (
                   <tr key={index}>
                     <td style={{ backgroundColor: 'white', color: 'red' }}> {index + 1}</td>
                     <td>{name}</td>
+                    <td>
+                      {category.map((id) => {
+                        if (categoryid == id.id) {
+                            return id.name
+                        }
+                      })}
+                    </td>
                     <td><img style={{ width: '100px', height: '100px' }} src={image} /></td>
                     <td>{color}</td>
                     <td className="center"> ${price}</td>
@@ -86,10 +97,22 @@ const Product = ({ products, onRemovePd }) => {
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
           style={customStyles}
-          contentLabel="Example Modal"
         >
-          <button onClick={closeModal}>x</button>
-          <h4>Xóa thành công sản phẩm </h4 >
+          <div class="modal-header">
+            <h5 class="modal-title">Xóa sản phẩm</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div class="modal-body">
+            Bạn đã xóa thành công sản phẩm
+            </div>
+          <div class="modal-footer">
+            {/* <button type="button"  class="btn btn-secondary" data-dismiss="modal">Đóng</button> */}
+            <button type="button" onClick={closeModal} class="btn btn-primary">Đóng</button>
+
+          </div>
         </Modal>
       </div>
     </div>

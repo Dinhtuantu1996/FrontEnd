@@ -3,13 +3,12 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
 
-const Category = ({ category, onRemoveCg }) => {
+const Category = ({ products, category, onRemoveCg }) => {
     const onHandleRemoveCg = (id) => {
         onRemoveCg(id);
         openModal();
     }
-
-
+  
     const [modalIsOpen, setIsOpen] = React.useState(false);
     function openModal() {
         setIsOpen(true);
@@ -19,8 +18,8 @@ const Category = ({ category, onRemoveCg }) => {
     }
     const customStyles = {
         content: {
-            top: '50%',
-            left: '50%',
+            top: '30%',
+            left: '40%',
             right: 'auto',
             bottom: 'auto',
         }
@@ -29,7 +28,7 @@ const Category = ({ category, onRemoveCg }) => {
 
     return (
         <div className="container-fluid">
-            <h1 className="h3 mb-2 text-gray-800">Quản lý sản phẩm</h1>
+            <h1 className="h3 mb-2 text-gray-800">Quản lý danh mục</h1>
             <div className="card shadow mb-4">
                 <div className="card-header py-3">
                     <Link style={{ width: '400px' }} className="btn btn-info" to={"/admin/addcategory"} >Thêm mới</Link>
@@ -58,7 +57,7 @@ const Category = ({ category, onRemoveCg }) => {
                                 </tr>
                             </tfoot>
                             <tbody>
-                                {category.map(({ id, name, detail, amount,image }, index) => (
+                                {category.map(({ id, name, detail, amount, image }, index) => (
                                     <tr key={index}>
                                         <td style={{ backgroundColor: 'white', color: 'red' }}> {index + 1}</td>
                                         <td>{name}</td>
@@ -69,7 +68,7 @@ const Category = ({ category, onRemoveCg }) => {
                                                 <p>{detail}</p>
                                             </details>
                                         </td>
-                                        <td>{amount}</td>
+                                        <td> </td>
                                         <td><a className="btn btn-danger" onClick={() => onHandleRemoveCg(id)}>Xóa</a>
                                             <Link className="btn btn-info" to={"/admin/editcategory/" + id} >Sửa</Link></td>
                                     </tr>))}
@@ -79,15 +78,27 @@ const Category = ({ category, onRemoveCg }) => {
                 </div>
             </div>
             <div>
-                <Modal
-                    isOpen={modalIsOpen}
-                    onRequestClose={closeModal}
-                    style={customStyles}
-                    contentLabel="Example Modal"
-                >
-                    <button onClick={closeModal}>x</button>
-                    <h4>Xóa thành công danh mục </h4 >
-                </Modal>
+            <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        style={customStyles}
+      >
+        <div class="modal-header">
+          <h5 class="modal-title">Xóa danh mục</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          Bạn đã xóa thành công danh mục
+            </div>
+        <div class="modal-footer">
+          {/* <button type="button"  class="btn btn-secondary" data-dismiss="modal">Đóng</button> */}
+          <button type="button" onClick={closeModal} class="btn btn-primary">Đóng</button>
+
+        </div>
+      </Modal>
             </div>
         </div>
 

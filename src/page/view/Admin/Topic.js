@@ -19,8 +19,8 @@ const Topic = ({ topics, onRemoveTp }) => {
     }
     const customStyles = {
         content: {
-            top: '50%',
-            left: '50%',
+            top: '30%',
+            left: '40%',
             right: 'auto',
             bottom: 'auto',
         }
@@ -82,15 +82,27 @@ const Topic = ({ topics, onRemoveTp }) => {
                 </div>
             </div>
             <div>
-                <Modal
-                    isOpen={modalIsOpen}
-                    onRequestClose={closeModal}
-                    style={customStyles}
-                    contentLabel="Example Modal"
-                >
-                    <button onClick={closeModal}>x</button>
-                    <h4>Xóa thành công bài viết </h4 >
-                </Modal>
+            <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        style={customStyles}
+      >
+        <div class="modal-header">
+          <h5 class="modal-title">Xóa bài viết</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          Bạn đã xóa thành công bài viết
+            </div>
+        <div class="modal-footer">
+          {/* <button type="button"  class="btn btn-secondary" data-dismiss="modal">Đóng</button> */}
+          <button type="button" onClick={closeModal} class="btn btn-primary">Đóng</button>
+
+        </div>
+      </Modal>
             </div>
         </div>
 

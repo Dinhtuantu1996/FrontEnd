@@ -118,8 +118,8 @@ const MainDetail = ({ products }) => {
                         <p>{product.detailmin}</p>
                       </div>
                       <div className="tab-pane border fade" id="pills-manufacturer" role="tabpanel" aria-labelledby="pills-manufacturer-tab">
-                      <p>{product.detailmax}</p>
-                        </div>
+                        <p>{product.detailmax}</p>
+                      </div>
                       <div className="tab-pane border fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
                         <div className="row">
                           <div className="col-md-8">

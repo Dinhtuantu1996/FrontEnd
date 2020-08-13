@@ -35,8 +35,8 @@ const AddTopic = ({ onAddTp }) => {
     }
     const customStyles = {
         content: {
-            top: '50%',
-            left: '50%',
+            top: '30%',
+            left: '40%',
             right: 'auto',
             bottom: 'auto',
         }
@@ -54,14 +54,15 @@ const AddTopic = ({ onAddTp }) => {
                         <form onSubmit={handleSubmit(onHandleSubmitTp)}>
                             <div className="form-group col-xs-6">
                                 <label htmlFor="name-field">Tiêu đề bài viết</label>
-                                <input name="name" ref={register({ required: true,pattern: /^[^\s]+(\s+[^\s]+)*$/})} type="text" className="form-control" id="name-field" placeholder="Tên tiêu đề" />
+                                <input name="name" ref={register({ required: true, pattern: /^[^\s]+(\s+[^\s]+)*$/ })} type="text" className="form-control" id="name-field" placeholder="Tên tiêu đề" />
                                 {errors.name && errors.name.type === "required" && <span style={{ color: 'red' }}>Không được để trống tên tiêu đề</span>}
                                 {errors.name && errors.name.type === "pattern" && <span style={{ color: 'red' }}>Không được có khoảng trống </span>}
 
                             </div>
                             <div className="form-group col-xs-6">
                                 <label htmlFor="name-field">Danh mục bài viết</label>
-                                <input name="category" ref={register({ required: true,  pattern: /^[^\s]+(\s+[^\s]+)*$/
+                                <input name="category" ref={register({
+                                    required: true, pattern: /^[^\s]+(\s+[^\s]+)*$/
                                 })} type="text" className="form-control" id="name-field" placeholder="Tên danh mục" />
                                 {errors.category && errors.category.type === "required" && <span style={{ color: 'red' }}>Không được để trống tên danh mục</span>}
                                 {errors.category && errors.category.type === "pattern" && <span style={{ color: 'red' }}>Không được có khoảng trống </span>}
@@ -74,13 +75,13 @@ const AddTopic = ({ onAddTp }) => {
                             </div>
                             <div className="form-group col-xs-12">
                                 <label htmlFor="body-field">Nội dung</label>
-                                <textarea ref={register({ required: true, minLength: 10, maxLength: 100 , pattern: /^[^\s]+(\s+[^\s]+)*$/})} id="body-field" name="detail" className="form-control" placeholder="Chi tiết" />
+                                <textarea ref={register({ required: true, minLength: 10, maxLength: 1000, pattern: /^[^\s]+(\s+[^\s]+)*$/ })} id="body-field" name="detail" className="form-control" placeholder="Chi tiết" />
                                 {errors.detail && errors.detail.type === "required" && <span style={{ color: 'red' }}>Không được để trống nội dung</span>}
                                 {errors.detail && errors.detail.type === "minLength" && <span style={{ color: 'red' }}>Nội dung danh mục phải trên 10 kí tự</span>}
-                                {errors.detail && errors.detail.type === "maxLength" && <span style={{ color: 'red' }}>Nội dung danh mục phải dưới 100 kí tự</span>}
+                                {errors.detail && errors.detail.type === "maxLength" && <span style={{ color: 'red' }}>Nội dung danh mục phải dưới 1000 kí tự</span>}
                                 {errors.detail && errors.detail.type === "pattern" && <span style={{ color: 'red' }}>Không được có khoảng trống </span>}
                             </div>
-                           
+
                             <div className="form-group col-xs-12">
                                 <button type="submit" className="btn btn-primary btn-lg btn-block">Lưu</button>
                             </div>
@@ -91,14 +92,26 @@ const AddTopic = ({ onAddTp }) => {
                 </div>
             </div>
             <div>
-                <Modal
+            <Modal
                     isOpen={modalIsOpen}
                     onRequestClose={closeModal}
                     style={customStyles}
-                    contentLabel="Example Modal"
                 >
-                    <button onClick={closeModal}>x</button>
-                    <h4>Thêm thành công bài viết </h4 >
+                    <div class="modal-header">
+                        <h5 class="modal-title">Thêm bài viết</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        Bạn đã thêm thành công bài viết
+            </div>
+                    <div class="modal-footer">
+                        {/* <button type="button"  class="btn btn-secondary" data-dismiss="modal">Đóng</button> */}
+                        <button type="button" onClick={closeModal} class="btn btn-primary">Đóng</button>
+
+                    </div>
                 </Modal>
             </div>
         </div>

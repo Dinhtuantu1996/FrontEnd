@@ -37,8 +37,8 @@ const EditProduct = ({ products, categorys, onUpdatePd }) => {
     }
     const customStyles = {
         content: {
-            top: '50%',
-            left: '50%',
+            top: '30%',
+            left: '40%',
             right: 'auto',
             bottom: 'auto',
         }
@@ -46,7 +46,7 @@ const EditProduct = ({ products, categorys, onUpdatePd }) => {
     return (
         <div className="card shadow mb-4">
             <div className="card-header py-3">
-                <h1 className="h3 mb-2 text-gray-800">Thêm sản phẩm mới</h1>
+    <h1 className="h3 mb-2 text-gray-800">Sửa sản phẩm ID: {product.id}</h1>
             </div>
             <div className="card-body">
                 <div className="table-responsive">
@@ -62,6 +62,7 @@ const EditProduct = ({ products, categorys, onUpdatePd }) => {
                                 <label className="control-label" htmlFor="basicinput">Danh mục</label>
                                 <div className="controls">
                                     <select name="categoryid" ref={register()} tabIndex={1} data-placeholder="Select here.." className="form-control ">
+                                    <option  value="">--Không thuộc danh mục nào--</option>
                                         {categorys.map((category, index) => (
                                             <option key={index} value={category.id}>{category.name}</option>))}
                                     </select>
@@ -99,10 +100,10 @@ const EditProduct = ({ products, categorys, onUpdatePd }) => {
                             </div>
                             <div className="form-group col-xs-12">
                                 <label htmlFor="body-field">Chi tiết sản phẩm</label>
-                                <textarea ref={register({ required: true, minLength: 10, maxLength: 500, pattern: /^[^\s]+(\s+[^\s]+)*$/ })} defaultValue={product.detailmax} id="body-field" name="detailmax" className="form-control" placeholder="Chi tiết" />
+                                <textarea ref={register({ required: true, minLength: 10, maxLength: 2000, pattern: /^[^\s]+(\s+[^\s]+)*$/ })} defaultValue={product.detailmax} id="body-field" name="detailmax" className="form-control" placeholder="Chi tiết" />
                                 {errors.detailmax && errors.detailmax.type === "required" && <span style={{ color: 'red' }}>Không được để trống chi tiết</span>}
                                 {errors.detailmax && errors.detailmax.type === "minLength" && <span style={{ color: 'red' }}>Chi tiết phải trên 10 kí tự</span>}
-                                {errors.detailmax && errors.detailmax.type === "maxLength" && <span style={{ color: 'red' }}>Chi tiết phải dưới 500 kí tự</span>}
+                                {errors.detailmax && errors.detailmax.type === "maxLength" && <span style={{ color: 'red' }}>Chi tiết phải dưới 2000 kí tự</span>}
                                 {errors.detailmax && errors.detailmax.type === "pattern" && <span style={{ color: 'red' }}>Không được có khoảng trống</span>}
                             </div>
                             <div className="control-group">
@@ -128,14 +129,26 @@ const EditProduct = ({ products, categorys, onUpdatePd }) => {
                 </div>
             </div>
             <div>
-                <Modal
+            <Modal
                     isOpen={modalIsOpen}
                     onRequestClose={closeModal}
                     style={customStyles}
-                    contentLabel="Example Modal"
                 >
-                    <button onClick={closeModal}>x</button>
-                    <h4>Sửa thành công sản phẩm </h4 >
+                    <div class="modal-header">
+                        <h5 class="modal-title">Sửa sản phẩm</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        Bạn đã sửa thành công sản phẩm
+            </div>
+                    <div class="modal-footer">
+                        {/* <button type="button"  class="btn btn-secondary" data-dismiss="modal">Đóng</button> */}
+                        <button type="button" onClick={closeModal} class="btn btn-primary">Đóng</button>
+
+                    </div>
                 </Modal>
             </div>
         </div>
