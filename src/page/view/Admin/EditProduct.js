@@ -62,7 +62,7 @@ const EditProduct = ({ products, categorys, onUpdatePd }) => {
                                 <label className="control-label" htmlFor="basicinput">Danh mục</label>
                                 <div className="controls">
                                     <select name="categoryid" ref={register()} tabIndex={1} data-placeholder="Select here.." className="form-control ">
-                                    <option  value="">--Không thuộc danh mục nào--</option>
+                                   
                                         {categorys.map((category, index) => (
                                             <option key={index} value={category.id}>{category.name}</option>))}
                                     </select>

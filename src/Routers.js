@@ -26,37 +26,47 @@ import Topic from './page/view/Admin/Topic';
 import AddTopic from './page/view/Admin/AddTopic';
 import EditTopic from './page/view/Admin/EditTopic';
 import MainCategory from './page/view/Main/MainCategory';
-import MainCategoryDetail from './page/view/Main/MainCategoryDetail';
 import MainTopic from './page/view/Main/MainTopic';
+import Order from './page/view/Admin/Order';
+import DetailCheckOut from './page/view/Admin/DetailCheckOut';
 
 const Routers = ({ products, onRemovePd, onAddPd, onUpdatePd
-    , categorys, onRemoveCg, onAddCg, onUpdateCg 
-    , topics, onRemoveTp, onAddTp, onUpdateTp }) => {
+    , categorys, onRemoveCg, onAddCg, onUpdateCg
+    , topics, onRemoveTp, onAddTp, onUpdateTp
+    , carts, onRemoveCr, onAddCr
+    ,checkouts,onCheckOut, detailcheckouts }) => {
 
 
-        
+
     const onHandleRemovePd = (id) => {
         onRemovePd(id)
     }
 
     const onHandleUpdatePd = (product) => {
         onUpdatePd(product)
-       
+
     }
     const onHandleRemoveCg = (id) => {
         onRemoveCg(id)
     }
 
-    const onHandleUpdateCg = ( category) => {
-        onUpdateCg( category)
+    const onHandleUpdateCg = (category) => {
+        onUpdateCg(category)
     }
 
     const onHandleRemoveTp = (id) => {
         onRemoveTp(id)
     }
 
-    const onHandleUpdateTp = ( topic) => {
-        onUpdateTp( topic)
+    const onHandleUpdateTp = (topic) => {
+        onUpdateTp(topic)
+    }
+
+    const onHandleRemoveCr = (id) => {
+        onRemoveCr(id)
+    }
+    const onHandleAddCr = (id) => {
+        onAddCr(id)
     }
 
     return (
@@ -87,16 +97,22 @@ const Routers = ({ products, onRemovePd, onAddPd, onUpdatePd
                                 <AddCategory onAddCg={onAddCg} />
                             </Route>
                             <Route path="/admin/editcategory/:id" >
-                                <EditCategory category={categorys}  onUpdateCg={onHandleUpdateCg} />
+                                <EditCategory category={categorys} onUpdateCg={onHandleUpdateCg} />
                             </Route>
                             <Route path='/admin/topic' >
                                 <Topic topics={topics} onRemoveTp={onHandleRemoveTp} />
+                            </Route>
+                            <Route path='/admin/order' >
+                                <Order checkouts={checkouts} />
+                            </Route>
+                            <Route path='/admin/detailcheckout/:id'>
+                                <DetailCheckOut detailcheckouts={detailcheckouts}  />
                             </Route>
                             <Route path='/admin/addtopic' >
                                 <AddTopic onAddTp={onAddTp} />
                             </Route>
                             <Route path="/admin/edittopic/:id" >
-                                <EditTopic topics={topics}  onUpdateTp={onHandleUpdateTp} />
+                                <EditTopic topics={topics} onUpdateTp={onHandleUpdateTp} />
                             </Route>
                             <Route>
                                 <Error />
@@ -123,25 +139,22 @@ const Routers = ({ products, onRemovePd, onAddPd, onUpdatePd
                                 <MainContact />
                             </Route>
                             <Route path="/shopping" >
-                                <MainShopping products={products} />
-                            </Route>
-                            <Route path="/categorys" >
-                                <MainCategory category={categorys}  />
+                                <MainShopping category={categorys} products={products} onAddCr={onHandleAddCr} />
                             </Route>
                             <Route path="/cart" >
-                                <MainCart />
+                                <MainCart carts={carts} onRemoveCr={onHandleRemoveCr} />
                             </Route>
                             <Route path="/order" >
                                 <MainOrder />
                             </Route>
                             <Route path="/checkout" >
-                                <MainCheckOut />
+                                <MainCheckOut  onCheckOut={onCheckOut} />
                             </Route>
                             <Route path="/detail/:id">
                                 <MainDetail products={products} />
                             </Route>
                             <Route path="/category/:id">
-                                <MainCategoryDetail products={products} />
+                                <MainCategory products={products} />
                             </Route>
                             <Route path="/blog">
                                 <MainTopic topics={topics} />

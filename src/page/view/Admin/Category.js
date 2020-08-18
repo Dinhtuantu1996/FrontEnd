@@ -7,8 +7,10 @@ const Category = ({ products, category, onRemoveCg }) => {
     const onHandleRemoveCg = (id) => {
         onRemoveCg(id);
         openModal();
+        
     }
-  
+
+
     const [modalIsOpen, setIsOpen] = React.useState(false);
     function openModal() {
         setIsOpen(true);
@@ -24,6 +26,8 @@ const Category = ({ products, category, onRemoveCg }) => {
             bottom: 'auto',
         }
     };
+
+  
 
 
     return (
@@ -57,7 +61,7 @@ const Category = ({ products, category, onRemoveCg }) => {
                                 </tr>
                             </tfoot>
                             <tbody>
-                                {category.map(({ id, name, detail, amount, image }, index) => (
+                                {category.map(({ id, name, detail, image }, index) => (
                                     <tr key={index}>
                                         <td style={{ backgroundColor: 'white', color: 'red' }}> {index + 1}</td>
                                         <td>{name}</td>
@@ -68,7 +72,13 @@ const Category = ({ products, category, onRemoveCg }) => {
                                                 <p>{detail}</p>
                                             </details>
                                         </td>
-                                        <td> </td>
+                                        <td>
+                                             { products.map((product) => {
+                                            if (id == product.categoryid) {
+                                                
+                                                return   product.categoryid
+                                            }
+                                        })} </td>
                                         <td><a className="btn btn-danger" onClick={() => onHandleRemoveCg(id)}>Xóa</a>
                                             <Link className="btn btn-info" to={"/admin/editcategory/" + id} >Sửa</Link></td>
                                     </tr>))}
@@ -78,27 +88,27 @@ const Category = ({ products, category, onRemoveCg }) => {
                 </div>
             </div>
             <div>
-            <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        style={customStyles}
-      >
-        <div class="modal-header">
-          <h5 class="modal-title">Xóa danh mục</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
+                <Modal
+                    isOpen={modalIsOpen}
+                    onRequestClose={closeModal}
+                    style={customStyles}
+                >
+                    <div class="modal-header">
+                        <h5 class="modal-title">Xóa danh mục</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
 
-        <div class="modal-body">
-          Bạn đã xóa thành công danh mục
+                    <div class="modal-body">
+                        Bạn đã xóa thành công danh mục
             </div>
-        <div class="modal-footer">
-          {/* <button type="button"  class="btn btn-secondary" data-dismiss="modal">Đóng</button> */}
-          <button type="button" onClick={closeModal} class="btn btn-primary">Đóng</button>
+                    <div class="modal-footer">
+                        {/* <button type="button"  class="btn btn-secondary" data-dismiss="modal">Đóng</button> */}
+                        <button type="button" onClick={closeModal} class="btn btn-primary">Đóng</button>
 
-        </div>
-      </Modal>
+                    </div>
+                </Modal>
             </div>
         </div>
 

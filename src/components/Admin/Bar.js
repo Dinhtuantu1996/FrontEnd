@@ -82,9 +82,9 @@ function Bar(props) {
               </li>
               {/* Nav Item - Charts */}
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <Link className="nav-link" to="/admin/order">
                   <i className="fas fa-fw fa-chart-area" />
-                  <span>Quản lý đặt hàng</span></a>
+                  <span>Quản lý đặt hàng</span></Link>
               </li>
               {/* Nav Item - Tables */}
               <li className="nav-item">

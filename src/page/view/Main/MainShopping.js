@@ -4,7 +4,12 @@ import {
   Link
 } from "react-router-dom";
 
-const MainShopping = ({ products }) => {
+const MainShopping = ({category, products, onAddCr }) => {
+
+  const onHandleAddCr = (id) => {
+    onAddCr(id);
+  }
+
   return (
     <div>
       <div className="breadcrumbs">
@@ -30,33 +35,20 @@ const MainShopping = ({ products }) => {
           </div>
         </div>
       </div>
-      <div className="colorlib-featured">
+       <div className="colorlib-featured">
         <div className="container">
           <div className="row">
-            <div className="col-sm-4 text-center">
-              <div className="featured">
-                <div className="featured-img featured-img-2" style={{ backgroundImage: 'url(bootstrap2/images/img_bg_2.jpg)' }}>
-                  <h2>Casuals</h2>
-                  <p><a href="#" className="btn btn-primary btn-lg">Shop now</a></p>
+            {category.map(({ id, name, image, detail }, index) => (
+              <div className="col-sm-4 text-center" key={index}>
+                <div className="featured">
+                  <div className="featured-img featured-img-2" style= {{ backgroundImage:  `url(${image})` }}  >
+                    <h2>{name}</h2>
+                    <p><Link to={"/category/" + id} className="btn btn-primary btn-lg">Shop Now</Link></p>
+                    <h4  style={{color:"white"}}>{detail}</h4>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="col-sm-4 text-center">
-              <div className="featured">
-                <div className="featured-img featured-img-2" style={{ backgroundImage: 'url(bootstrap2/images/women.jpg)' }}>
-                  <h2>Dress</h2>
-                  <p><a href="#" className="btn btn-primary btn-lg">Shop now</a></p>
-                </div>
-              </div>
-            </div>
-            <div className="col-sm-4 text-center">
-              <div className="featured">
-                <div className="featured-img featured-img-2" style={{ backgroundImage: 'url(bootstrap2/images/item-11.jpg)' }}>
-                  <h2>Sports</h2>
-                  <p><a href="#" className="btn btn-primary btn-lg">Shop now</a></p>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
@@ -67,14 +59,12 @@ const MainShopping = ({ products }) => {
               <div className="row">
                 <div className="col-sm-12">
                   <div className="side border mb-1">
-                    <h3>Brand</h3>
+                    <h3>Danh mục</h3>
+                    {category.map(({ id, name, image, detail }, index) => (
                     <ul>
-                      <li><a href="#">Nike</a></li>
-                      <li><a href="#">Adidas</a></li>
-                      <li><a href="#">Merrel</a></li>
-                      <li><a href="#">Gucci</a></li>
-                      <li><a href="#">Skechers</a></li>
+                      <li><Link to={"/category/" + id}>{name}</Link></li>
                     </ul>
+                     ))}
                   </div>
                 </div>
                 <div className="col-sm-12">
@@ -169,7 +159,7 @@ const MainShopping = ({ products }) => {
                       <div className="desc">
                         <h2><a href="#">{name}</a></h2>
                         <span className="price">${price}</span>
-                        <a href="#" className="btn btn-warning">Add cart</a>
+                        <Link to="/cart" className="btn btn-warning" onClick={() => onHandleAddCr(id)}>Add cart</Link>
                         <Link to={"/detail/" + id} className="btn btn-info">Detail</Link>
                       </div>
                     </div>

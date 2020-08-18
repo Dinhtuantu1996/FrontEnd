@@ -1,10 +1,14 @@
-import React from 'react'
+import React , { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import {
     Link
   } from "react-router-dom";
 
 const MainOrder = props => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
     return (
         <div>
   <div className="breadcrumbs">
@@ -31,7 +35,7 @@ const MainOrder = props => {
             </div>
             <div className="process text-center active">
               <p><span>03</span></p>
-              <h3>Order Complete</h3>
+              <h2 >Order Complete</h2>
             </div>
           </div>
         </div>

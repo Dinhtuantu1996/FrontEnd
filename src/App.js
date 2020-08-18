@@ -4,6 +4,10 @@ import Routers from './Routers';
 import apiRequestPd from './api/productApi';
 import apiRequestCg from './api/categorysApi';
 import apiRequestTp from './api/topicApi';
+import apiRequestCr from './api/cartApi';
+import apiRequestCt from './api/checkoutApi';
+import apiRequestDtCt from './api/detailcheckoutApi';
+
 
 function App() {
 
@@ -36,9 +40,9 @@ function App() {
   const onHandleAddPd = async (products) => {
     try {
       const newProduct = {
-        id :   (product.length +1).toString(), 
-            ...products
-          }
+        id: (product.length + 1).toString(),
+        ...products
+      }
       const { data } = await apiRequestPd.create(newProduct);
       setProducts([
         ...product,
@@ -49,7 +53,7 @@ function App() {
     }
   }
 
- 
+
 
 
   const onHandleUpdatePd = async (updateProduct) => {
@@ -82,23 +86,29 @@ function App() {
     getCategorys();
   }, []);
 
+
   const onHandleRemoveCg = async (id) => {
     try {
       const { } = await apiRequestCg.remove(id);
       const newCategorys = category.filter(categorys => categorys.id !== id);
+      const newProduct = product.filter(pr => pr.categoryid == id);
+      newProduct.map(async (id) => {
+        return await apiRequestPd.update(id.id, { ...id, categoryid: "0" })
+      })
       setCategorys(newCategorys);
     } catch (error) {
       console.log('failed to request API: ', error)
     }
-    onHandleRemoveCg();
   }
+
+
 
   const onHandleAddCg = async (categorys) => {
     try {
       const newCategorys = {
-        id :   (category.length +1).toString(), 
-            ...categorys
-          }
+        id: (category.length + 1).toString(),
+        ...categorys
+      }
       const { data } = await apiRequestCg.create(newCategorys);
       setCategorys([
         ...category,
@@ -139,26 +149,26 @@ function App() {
     getTopic();
   }, []);
 
+
   const onHandleRemoveTp = async (id) => {
     try {
-      const {  } = await apiRequestTp.remove(id);
+      const { } = await apiRequestTp.remove(id);
       const newTopic = topic.filter(topics => topics.id !== id);
       setTopic(newTopic);
     } catch (error) {
       console.log('failed to request API: ', error)
     }
-    onHandleRemoveTp();
   }
 
   const onHandleAddTp = async (topics) => {
     try {
       var today = new Date();
-      var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+      var date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
       const newTopic = {
-        id :   (topic.length +1).toString(), 
-        date : date,
-            ...topics
-          }
+        id: (topic.length + 1).toString(),
+        date: date,
+        ...topics
+      }
       const { data } = await apiRequestTp.create(newTopic);
       setTopic([
         ...topic,
@@ -172,11 +182,11 @@ function App() {
   const onHandleUpdateTp = async (updateTopic) => {
     try {
       var today = new Date();
-      var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
-      const newdateTopic = { 
-        date : date,
-            ...updateTopic
-          }
+      var date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
+      const newdateTopic = {
+        date: date,
+        ...updateTopic
+      }
       const { data } = await apiRequestTp.update(newdateTopic.id, newdateTopic);
       const newTopic = topic.map(topics => (
         topics.id === data.id ? data : topics
@@ -188,11 +198,117 @@ function App() {
   }
 
 
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+  const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    const getCart = async () => {
+      try {
+        const { data } = await apiRequestCr.getAll();
+        setCart(data);
+      } catch (error) {
+        console.log('failed to request API: ', error)
+      }
+    }
+    getCart();
+  }, []);
+
+
+  const onHandleRemoveCr = async (id) => {
+    try {
+      const { } = await apiRequestCr.remove(id);
+      const newCart = cart.filter(carts => carts.id !== id);
+      setCart(newCart);
+    } catch (error) {
+      console.log('failed to request API: ', error)
+    }
+  }
+
+  const onHandleAddCr = async (id) => {
+    try {
+      const products = product.filter(pr => pr.id == id);
+      products.find(async (id) => {
+        const newCart = {
+          id: id.id,
+          name: id.name,
+          image: id.image,
+          price: id.price,
+          pricesale: id.pricesale,
+          amout: "1"
+        }
+        const { data } = await apiRequestCr.create(newCart);
+        setCart([
+          ...cart,
+          data
+        ])
+      })
+     
+    } catch (error) {
+      console.log('failed to request API: ', error)
+    }
+  }
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+const [checkout, setCheckout] = useState([]);
+
+useEffect(() => {
+  const getCheckOut = async () => {
+    try {
+      const { data } = await apiRequestCt.getAll();
+      setCheckout(data);
+    } catch (error) {
+      console.log('failed to request API: ', error)
+    }
+  }
+  getCheckOut();
+}, []);
+
+
+  const onHandleCheckOut = async (checkouts) => {
+    try {
+      const newCheckout = {
+        id: (checkout.length + 1).toString(),
+        ...checkouts
+      }
+      const { data } = await apiRequestCt.create(newCheckout);
+     
+      setCheckout([
+        ...checkout,
+        data
+      ])
+    } catch (error) {
+      console.log('failed to request API: ', error)
+    }
+  }
+
+
+  const [detailcheckout, setDetailCheckout] = useState([]);
+
+useEffect(() => {
+  const getDetailCheckOut = async () => {
+    try {
+      const { data } = await apiRequestDtCt.getAll();
+      setDetailCheckout(data);
+    } catch (error) {
+      console.log('failed to request API: ', error)
+    }
+  }
+  getDetailCheckOut();
+}, []);
+
   return (
     <div className="App">
       <Routers products={product} onRemovePd={onHandleRemovePd} onUpdatePd={onHandleUpdatePd} onAddPd={onHandleAddPd}
         categorys={category} onRemoveCg={onHandleRemoveCg} onUpdateCg={onHandleUpdateCg} onAddCg={onHandleAddCg}
-        topics={topic} onRemoveTp={onHandleRemoveTp} onUpdateTp={onHandleUpdateTp} onAddTp={onHandleAddTp} />
+        topics={topic} onRemoveTp={onHandleRemoveTp} onUpdateTp={onHandleUpdateTp} onAddTp={onHandleAddTp}
+        carts={cart} onRemoveCr={onHandleRemoveCr} onAddCr={onHandleAddCr} 
+        checkouts={checkout} onCheckOut={onHandleCheckOut} detailcheckouts={detailcheckout} />
     </div>
   );
 }
