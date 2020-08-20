@@ -26,47 +26,42 @@
   "detailcheckouts": [
     {
       "id": "1",
+      "checkoutid": "1",
       "productid": "3",
       "name": "Giày 3",
       "image": "https://firebasestorage.googleapis.com/v0/b/reactjs-file.appspot.com/o/images%2Fitem-6.jpg?alt=media&token=85fba327-e57f-4d02-81e8-bbd47fd40ed5",
-      "price": "100",
-      "pricesale": "50",
       "amout": "1"
     },
     {
-      "id": "1",
+      "id": "2",
+      "checkoutid": "1",
       "productid": "10",
       "name": "Giày 10",
       "image": "https://firebasestorage.googleapis.com/v0/b/reactjs-file.appspot.com/o/images%2Fimg_bg_3.jpg?alt=media&token=491df20e-a74d-4abb-9a9c-f80e860a44a1",
-      "price": "100",
-      "pricesale": "50",
       "amout": "1"
     },
     {
-      "id": "2",
+      "id": "3",
+      "checkoutid": "2",
       "productid": "4",
       "name": "Giày 4",
       "image": "https://firebasestorage.googleapis.com/v0/b/reactjs-file.appspot.com/o/images%2Fitem-5.jpg?alt=media&token=378ab944-eb6a-4d41-a86e-de3034e55793",
-      "price": "100",
-      "pricesale": "50",
       "amout": "1"
     },
     {
-      "id": "2",
+      "id": "4",
+      "checkoutid": "2",
       "productid": "2",
       "name": "Giày 2",
       "image": "https://firebasestorage.googleapis.com/v0/b/reactjs-file.appspot.com/o/images%2Fitem-3.jpg?alt=media&token=2bcbab11-7d55-4472-bbd8-1d7b2d33a7a0",
-      "price": "100",
-      "pricesale": "50",
       "amout": "1"
     },
     {
-      "id": "2",
+      "id": "5",
+      "checkoutid": "2",
       "productid": "6",
       "name": "Giày 6",
       "image": "https://firebasestorage.googleapis.com/v0/b/reactjs-file.appspot.com/o/images%2Fitem-16.jpg?alt=media&token=0618f7ee-74f8-4046-a5e3-1b7c93f94ddc",
-      "price": "100",
-      "pricesale": "50",
       "amout": "1"
     }
   ],
@@ -113,12 +108,6 @@
       "image": "https://firebasestorage.googleapis.com/v0/b/reactjs-file.appspot.com/o/images%2Fimg_bg_2.jpg?alt=media&token=3c5d733f-649d-4455-aa2d-6faa85022c6e",
       "detail": "Giày cao gót cho phụ nữ",
       "id": "3"
-    },
-    {
-      "id": "5",
-      "name": "tudtph09235",
-      "image": "https://firebasestorage.googleapis.com/v0/b/reactjs-file.appspot.com/o/images%2Fitem-6.jpg?alt=media&token=f0057b98-9642-4330-b374-354ff59e6315",
-      "detail": "11111111111111111111111111111"
     }
   ],
   "products": [
@@ -241,30 +230,6 @@
       "detailmax": "Với đế boost, đôi giày cực kì êm luôn. Chất liệu prime knit trên upper, đôi giày sẽ mềm hơn qua thời gian. Không chỉ cải tiến mạnh mẽ về thiết kế, Adidas Yeezy 350 V2 còn đảm bảo tính thoải mái cho người dùng. Thiết kế lưỡi gà và gót sau giày cao hơn một bậc, rộng, hỗ trợ cho quá trình mang/ tháo giày dễ dàng và nhanh chóng hơn. Kết hợp với phần đệm lót ôm sát cổ chân, giúp giày ôm trọn bàn chân người dùng, thuận tiện cho việc chạy nhảy, di chuyển. Với đế boost, đôi giày cực kì êm luôn. Chất liệu prime knit trên upper, đôi giày sẽ mềm hơn qua thời gian. Không chỉ cải tiến mạnh mẽ về thiết kế, Adidas Yeezy 350 V2 còn đảm bảo tính thoải mái cho người dùng. Thiết kế lưỡi gà và gót sau giày cao hơn một bậc, rộng, hỗ trợ cho quá trình mang/ tháo giày dễ dàng và nhanh chóng hơn. Kết hợp với phần đệm lót ôm sát cổ chân, giúp giày ôm trọn bàn chân người dùng, thuận tiện cho việc chạy nhảy, di chuyển. Với đế boost, đôi giày cực kì êm luôn. Chất liệu prime knit trên upper, đôi giày sẽ mềm hơn qua thời gian. Không chỉ cải tiến mạnh mẽ về thiết kế, Adidas Yeezy 350 V2 còn đảm bảo tính thoải mái cho người dùng. Thiết kế lưỡi gà và gót sau giày cao hơn một bậc, rộng, hỗ trợ cho quá trình mang/ tháo giày dễ dàng và nhanh chóng hơn. Kết hợp với phần đệm lót ôm sát cổ chân, giúp giày ôm trọn bàn chân người dùng, thuận tiện cho việc chạy nhảy, di chuyển.",
       "status": "on",
       "id": "10"
-    },
-    {
-      "id": "11",
-      "name": "ưeqweqweqwe",
-      "categoryid": "5",
-      "price": "1",
-      "pricesale": "1",
-      "color": "11",
-      "image": "https://firebasestorage.googleapis.com/v0/b/reactjs-file.appspot.com/o/images%2Fitem-8.jpg?alt=media&token=3dd4ab97-e04a-4668-8cf4-43f0c95cd835",
-      "detailmin": "1",
-      "detailmax": "11111111111111111111111111111111111111111",
-      "status": ""
-    },
-    {
-      "id": "12",
-      "name": "ưeqweqweqwe",
-      "categoryid": "5",
-      "price": "1",
-      "pricesale": "1",
-      "color": "11",
-      "image": "https://firebasestorage.googleapis.com/v0/b/reactjs-file.appspot.com/o/images%2Fitem-8.jpg?alt=media&token=3dd4ab97-e04a-4668-8cf4-43f0c95cd835",
-      "detailmin": "1",
-      "detailmax": "11111111111111111111111111111111111111111",
-      "status": ""
     }
   ]
 }

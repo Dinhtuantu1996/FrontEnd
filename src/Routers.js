@@ -37,38 +37,6 @@ const Routers = ({ products, onRemovePd, onAddPd, onUpdatePd
     ,checkouts,onCheckOut, detailcheckouts }) => {
 
 
-
-    const onHandleRemovePd = (id) => {
-        onRemovePd(id)
-    }
-
-    const onHandleUpdatePd = (product) => {
-        onUpdatePd(product)
-
-    }
-    const onHandleRemoveCg = (id) => {
-        onRemoveCg(id)
-    }
-
-    const onHandleUpdateCg = (category) => {
-        onUpdateCg(category)
-    }
-
-    const onHandleRemoveTp = (id) => {
-        onRemoveTp(id)
-    }
-
-    const onHandleUpdateTp = (topic) => {
-        onUpdateTp(topic)
-    }
-
-    const onHandleRemoveCr = (id) => {
-        onRemoveCr(id)
-    }
-    const onHandleAddCr = (id) => {
-        onAddCr(id)
-    }
-
     return (
         <Router>
             <Switch>
@@ -76,10 +44,10 @@ const Routers = ({ products, onRemovePd, onAddPd, onUpdatePd
                     <MainAdmin>
                         <Switch>
                             <Route path='/admin' exact>
-                                <Index products={products} topics={topics} />
+                                <Index products={products} topics={topics} checkouts={checkouts} detailcheckouts={detailcheckouts}  />
                             </Route>
                             <Route path='/admin/products' >
-                                <Product category={categorys} products={products} onRemovePd={onHandleRemovePd} />
+                                <Product category={categorys} products={products} onRemovePd={onRemovePd} />
                             </Route>
                             <Route path='/admin/add'>
                                 <AddProduct categorys={categorys} onAddPd={onAddPd} />
@@ -88,19 +56,19 @@ const Routers = ({ products, onRemovePd, onAddPd, onUpdatePd
                                 <DetailProduct products={products} />
                             </Route>
                             <Route path="/admin/edit/:id" >
-                                <EditProduct categorys={categorys} products={products} onUpdatePd={onHandleUpdatePd} />
+                                <EditProduct categorys={categorys} products={products} onUpdatePd={onUpdatePd} />
                             </Route>
                             <Route path='/admin/category' >
-                                <Category products={products} category={categorys} onRemoveCg={onHandleRemoveCg} />
+                                <Category products={products} category={categorys} onRemoveCg={onRemoveCg} />
                             </Route>
                             <Route path='/admin/addcategory'>
                                 <AddCategory onAddCg={onAddCg} />
                             </Route>
                             <Route path="/admin/editcategory/:id" >
-                                <EditCategory category={categorys} onUpdateCg={onHandleUpdateCg} />
+                                <EditCategory category={categorys} onUpdateCg={onUpdateCg} />
                             </Route>
                             <Route path='/admin/topic' >
-                                <Topic topics={topics} onRemoveTp={onHandleRemoveTp} />
+                                <Topic topics={topics} onRemoveTp={onRemoveTp} />
                             </Route>
                             <Route path='/admin/order' >
                                 <Order checkouts={checkouts} />
@@ -112,7 +80,7 @@ const Routers = ({ products, onRemovePd, onAddPd, onUpdatePd
                                 <AddTopic onAddTp={onAddTp} />
                             </Route>
                             <Route path="/admin/edittopic/:id" >
-                                <EditTopic topics={topics} onUpdateTp={onHandleUpdateTp} />
+                                <EditTopic topics={topics} onUpdateTp={onUpdateTp} />
                             </Route>
                             <Route>
                                 <Error />
@@ -139,10 +107,10 @@ const Routers = ({ products, onRemovePd, onAddPd, onUpdatePd
                                 <MainContact />
                             </Route>
                             <Route path="/shopping" >
-                                <MainShopping category={categorys} products={products} onAddCr={onHandleAddCr} />
+                                <MainShopping category={categorys} products={products} onAddCr={onAddCr} />
                             </Route>
                             <Route path="/cart" >
-                                <MainCart carts={carts} onRemoveCr={onHandleRemoveCr} />
+                                <MainCart carts={carts} onRemoveCr={onRemoveCr} />
                             </Route>
                             <Route path="/order" >
                                 <MainOrder />
@@ -154,7 +122,7 @@ const Routers = ({ products, onRemovePd, onAddPd, onUpdatePd
                                 <MainDetail products={products} />
                             </Route>
                             <Route path="/category/:id">
-                                <MainCategory products={products} />
+                                <MainCategory products={products} onAddCr={onAddCr}  />
                             </Route>
                             <Route path="/blog">
                                 <MainTopic topics={topics} />

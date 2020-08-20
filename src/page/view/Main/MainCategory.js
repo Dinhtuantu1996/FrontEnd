@@ -5,9 +5,13 @@ import {
     Link
 } from "react-router-dom";
 
-const MainCategory = ({ products }) => {
+const MainCategory = ({ products, onAddCr }) => {
     const { id } = useParams();
     const product = products.filter(product => product.categoryid === id);
+
+    const onHandleAddCr = (id) => {
+        onAddCr(id);
+    }
     return (
         <div>
             <div className="breadcrumbs">
@@ -41,7 +45,7 @@ const MainCategory = ({ products }) => {
                         </div>
                     </div>
                     <div className="row row-pb-md">
-                        {product.map(({ id, name, image, price }, index) => (
+                        {product.map(({ id, name, image, price,pricesale }, index) => (
                             <div key={index} className="col-md-3 col-lg-3 mb-4 text-center">
                                 <div className="product-entry border">
                                     <a href="#" className="prod-img">
@@ -50,7 +54,8 @@ const MainCategory = ({ products }) => {
                                     <div className="desc">
                                         <h2><a href="#">{name}</a></h2>
                                         <span className="price">${price}</span>
-                                        <a href="#" className="btn btn-warning">Add cart</a>
+                                        <span className="price">{'Sale: $' + pricesale}</span>
+                                        <Link to="/cart" className="btn btn-warning" onClick={() => onHandleAddCr(id)}>Add cart</Link>
                                         <Link to={"/detail/" + id} className="btn btn-info">Detail</Link>
                                     </div>
                                 </div>

@@ -7,7 +7,7 @@ import {
 
 const DetailCheckOut = ({detailcheckouts}) => {
     const { id } = useParams();
-    const detailcheckout = detailcheckouts.filter(dt => dt.id === id);
+    const detailcheckout = detailcheckouts.filter(dt => dt.checkoutid === id);
 
     return (
         <div className="colorlib-product">

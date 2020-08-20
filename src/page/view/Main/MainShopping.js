@@ -150,7 +150,7 @@ const MainShopping = ({category, products, onAddCr }) => {
             </div>
             <div className="col-lg-9 col-xl-9">
               <div className="row row-pb-md">
-                {products.map(({ id, name, image, price }, index) => (
+                {products.map(({ id, name, image, price, pricesale }, index) => (
                   <div key={index} className="col-lg-4 mb-4 text-center">
                     <div className="product-entry border">
                       <a href="#" className="prod-img">
@@ -159,6 +159,7 @@ const MainShopping = ({category, products, onAddCr }) => {
                       <div className="desc">
                         <h2><a href="#">{name}</a></h2>
                         <span className="price">${price}</span>
+                        <span className="price">{'Sale: $'+pricesale}</span>
                         <Link to="/cart" className="btn btn-warning" onClick={() => onHandleAddCr(id)}>Add cart</Link>
                         <Link to={"/detail/" + id} className="btn btn-info">Detail</Link>
                       </div>

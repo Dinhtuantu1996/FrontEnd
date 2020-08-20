@@ -46,7 +46,7 @@ const Category = ({ products, category, onRemoveCg }) => {
                                     <th >Tên danh mục</th>
                                     <th >Ảnh</th>
                                     <th >Mô tả danh mục</th>
-                                    <th style={{ width: '150px' }}>Số lượng hàng</th>
+                                    {/* <th style={{ width: '150px' }}>Số lượng hàng</th> */}
                                     <td style={{ width: '180px' }}> Hành động</td>
                                 </tr>
                             </thead>
@@ -56,7 +56,7 @@ const Category = ({ products, category, onRemoveCg }) => {
                                     <th >Tên danh mục</th>
                                     <th >Ảnh</th>
                                     <th >Mô tả danh mục</th>
-                                    <th >Số lượng hàng</th>
+                                    {/* <th >Số lượng hàng</th> */}
                                     <td> Hành động</td>
                                 </tr>
                             </tfoot>
@@ -72,13 +72,13 @@ const Category = ({ products, category, onRemoveCg }) => {
                                                 <p>{detail}</p>
                                             </details>
                                         </td>
-                                        <td>
+                                        {/* <td>
                                              { products.map((product) => {
                                             if (id == product.categoryid) {
-                                                
-                                                return   product.categoryid
-                                            }
-                                        })} </td>
+                                                const dem = product.categoryid
+                                                return dem
+                                            } 
+                                        })} </td> */}
                                         <td><a className="btn btn-danger" onClick={() => onHandleRemoveCg(id)}>Xóa</a>
                                             <Link className="btn btn-info" to={"/admin/editcategory/" + id} >Sửa</Link></td>
                                     </tr>))}

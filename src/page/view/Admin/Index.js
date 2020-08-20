@@ -1,8 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Index = ({ products , topics }) => {
+const Index = ({ products, topics, checkouts, detailcheckouts }) => {
 
+  const checkout = checkouts.length
+  const detailcheckout = detailcheckouts.length
   const product = products.length
   const topic = topics.length
 
@@ -21,8 +23,8 @@ const Index = ({ products , topics }) => {
             <div className="card-body">
               <div className="row no-gutters align-items-center">
                 <div className="col mr-2">
-                  <div className="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings (Monthly)</div>
-                  <div className="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                  <div className="text-xs font-weight-bold text-primary text-uppercase mb-1">Số khách hàng mua hàng</div>
+                  <div className="h5 mb-0 font-weight-bold text-gray-800">{checkout}</div>
                 </div>
                 <div className="col-auto">
                   <i className="fas fa-calendar fa-2x text-gray-300" />
@@ -37,11 +39,12 @@ const Index = ({ products , topics }) => {
             <div className="card-body">
               <div className="row no-gutters align-items-center">
                 <div className="col mr-2">
-                  <div className="text-xs font-weight-bold text-success text-uppercase mb-1">Earnings (Annual)</div>
-                  <div className="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                  <div className="text-xs font-weight-bold text-success text-uppercase mb-1">Số hàng đã bán</div>
+                  <div className="h5 mb-0 font-weight-bold text-gray-800">{detailcheckout}</div>
                 </div>
                 <div className="col-auto">
-                  <i className="fas fa-dollar-sign fa-2x text-gray-300" />
+                  {/* <i className="fas fa-dollar-sign fa-2x text-gray-300" /> */}
+                  <i className="fas fa-calendar fa-2x text-gray-300" /> 
                 </div>
               </div>
             </div>

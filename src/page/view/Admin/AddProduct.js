@@ -76,8 +76,8 @@ const AddProduct = ({ onAddPd, categorys }) => {
                             </div>
                             <div className="form-group col-xs-6">
                                 <label htmlFor="email-field">Giá sale</label>
-                                <input name="pricesale" type="number" ref={register({ required: true, min: 1, max: 1000 })} className="form-control" id="email-field" placeholder="Giá tiền $" />
-                                {errors.pricesale && errors.pricesale.type === "required" && <span style={{ color: 'red' }}>Không được để trống giá tiền</span>}
+                                <input name="pricesale" type="number" ref={register({  min: 1, max: 1000 })} className="form-control" id="email-field" placeholder="Giá tiền $" />
+                               
                                 {errors.pricesale && errors.pricesale.type === "min" && <span style={{ color: 'red' }}>Giá phải trên $0 </span>}
                                 {errors.pricesale && errors.pricesale.type === "max" && <span style={{ color: 'red' }}>Giá phải dưới $1000 </span>}
                             </div>

@@ -76,8 +76,8 @@ const EditProduct = ({ products, categorys, onUpdatePd }) => {
                             </div>
                             <div className="form-group col-xs-6">
                                 <label htmlFor="email-field">Giá sale</label>
-                                <input name="pricesale" type="number" ref={register({ required: true, min: 1, max: 1000 })} defaultValue={product.pricesale} className="form-control" id="email-field" placeholder="Giá tiền $" />
-                                {errors.pricesale && errors.pricesale.type === "required" && <span style={{ color: 'red' }}>Không được để trống giá tiền</span>}
+                                <input name="pricesale" type="number" ref={register({  min: 1, max: 1000 })} defaultValue={product.pricesale} className="form-control" id="email-field" placeholder="Giá tiền $" />
+                              
                                 {errors.pricesale && errors.pricesale.type === "min" && <span style={{ color: 'red' }}>Giá phải trên $0 </span>}
                                 {errors.pricesale && errors.pricesale.type === "max" && <span style={{ color: 'red' }}>Giá phải dưới $1000 </span>}
                             </div>
@@ -111,11 +111,11 @@ const EditProduct = ({ products, categorys, onUpdatePd }) => {
                                 <div className="controls">
                                     <label className="radio">
                                         <p style={{ padding: '0px 100px 0px 0px' }}>
-                                            <input type="radio" name="status" id="optionsRadios1" ref={register} defaultChecked />
+                                            <input type="radio" name="status" id="optionsRadios1" ref={register} value= {'Còn hàng'}  defaultChecked />
                                          Còn hàng</p>
                                     </label>
                                     <label className="radio">
-                                        <p> <input type="radio" name="status" id="optionsRadios2" ref={register} />
+                                        <p> <input type="radio" name="status" id="optionsRadios2"  />
                                           Hết hàng</p>
                                     </label>
                                 </div>

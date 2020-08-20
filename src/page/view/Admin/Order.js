@@ -4,19 +4,14 @@ import { Link } from 'react-router-dom';
 
 const Order = ({ checkouts }) => {
 
-    //   const onHandleRemovePd = (id) => {
-    //     onRemovePd(id);
-    //     openModal();
-    //   }
+   
 
-
-console.log(checkouts)
 
 
     return (
 
         <div className="container-fluid">
-            <h1 className="h3 mb-2 text-gray-800">Quản lý sản phẩm</h1>
+            <h1 className="h3 mb-2 text-gray-800">Quản lý đặt hàng</h1>
             <div className="card shadow mb-4">
                 <div className="card-header py-3">
                 </div>

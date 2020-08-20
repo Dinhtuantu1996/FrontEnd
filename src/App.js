@@ -93,8 +93,13 @@ function App() {
       const newCategorys = category.filter(categorys => categorys.id !== id);
       const newProduct = product.filter(pr => pr.categoryid == id);
       newProduct.map(async (id) => {
-        return await apiRequestPd.update(id.id, { ...id, categoryid: "0" })
+        const { data } = await apiRequestPd.update(id.id, { ...id, categoryid: "0" })
+        const newProduct = product.map(products => (
+          products.id === data.id ? data : products
+        ))
+        setProducts(newProduct)
       })
+
       setCategorys(newCategorys);
     } catch (error) {
       console.log('failed to request API: ', error)
@@ -246,38 +251,53 @@ function App() {
           data
         ])
       })
-     
+
     } catch (error) {
       console.log('failed to request API: ', error)
     }
   }
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const [checkout, setCheckout] = useState([]);
+  const [checkout, setCheckout] = useState([]);
 
-useEffect(() => {
-  const getCheckOut = async () => {
-    try {
-      const { data } = await apiRequestCt.getAll();
-      setCheckout(data);
-    } catch (error) {
-      console.log('failed to request API: ', error)
+  useEffect(() => {
+    const getCheckOut = async () => {
+      try {
+        const { data } = await apiRequestCt.getAll();
+        setCheckout(data);
+      } catch (error) {
+        console.log('failed to request API: ', error)
+      }
     }
-  }
-  getCheckOut();
-}, []);
+    getCheckOut();
+  }, []);
 
 
   const onHandleCheckOut = async (checkouts) => {
     try {
+      cart.map(async (e) => {
+        const  newdetailcheckout  =  {
+          id: Math.random().toString(36).substr(2,9),
+          checkoutid: (checkout.length + 1).toString(),
+          productid: e.id,
+          name: e.name, image: e.image, amout: e.amout
+        }
+         const{data} = await apiRequestDtCt.create(newdetailcheckout)
+          setDetailCheckout([...detailcheckout, data])
+      })
+
+      cart.map(async (e) => {
+         await apiRequestCr.remove(e.id)
+      })
+      setCart([])
+
       const newCheckout = {
         id: (checkout.length + 1).toString(),
         ...checkouts
       }
       const { data } = await apiRequestCt.create(newCheckout);
-     
       setCheckout([
         ...checkout,
         data
@@ -290,24 +310,24 @@ useEffect(() => {
 
   const [detailcheckout, setDetailCheckout] = useState([]);
 
-useEffect(() => {
-  const getDetailCheckOut = async () => {
-    try {
-      const { data } = await apiRequestDtCt.getAll();
-      setDetailCheckout(data);
-    } catch (error) {
-      console.log('failed to request API: ', error)
+  useEffect(() => {
+    const getDetailCheckOut = async () => {
+      try {
+        const { data } = await apiRequestDtCt.getAll();
+        setDetailCheckout(data);
+      } catch (error) {
+        console.log('failed to request API: ', error)
+      }
     }
-  }
-  getDetailCheckOut();
-}, []);
+    getDetailCheckOut();
+  }, []);
 
   return (
     <div className="App">
       <Routers products={product} onRemovePd={onHandleRemovePd} onUpdatePd={onHandleUpdatePd} onAddPd={onHandleAddPd}
         categorys={category} onRemoveCg={onHandleRemoveCg} onUpdateCg={onHandleUpdateCg} onAddCg={onHandleAddCg}
         topics={topic} onRemoveTp={onHandleRemoveTp} onUpdateTp={onHandleUpdateTp} onAddTp={onHandleAddTp}
-        carts={cart} onRemoveCr={onHandleRemoveCr} onAddCr={onHandleAddCr} 
+        carts={cart} onRemoveCr={onHandleRemoveCr} onAddCr={onHandleAddCr}
         checkouts={checkout} onCheckOut={onHandleCheckOut} detailcheckouts={detailcheckout} />
     </div>
   );
